@@ -14,6 +14,12 @@ export default class Draw extends React.Component {
         this.setState({ drawPressed: true })
     }
 
+    shuffle = (xs) => {
+        return xs.slice(0).sort(function () {
+            return 0.5 - Math.random();
+        });
+    };
+
     formingTeams = () => {
 
         let namesRaw = []
@@ -21,7 +27,7 @@ export default class Draw extends React.Component {
             namesRaw.push(obj.people)
         });
 
-        let names = namesRaw.join().split(',')
+        let names = this.shuffle(namesRaw.join().split(','))
 
         let formedTeamsArray = listOfTeams.slice()
 
@@ -32,6 +38,7 @@ export default class Draw extends React.Component {
         })
         return formedTeamsArray
     }
+  
 
 
   render() {
@@ -40,7 +47,7 @@ export default class Draw extends React.Component {
             <div className="Test">
                 
                 {this.state.drawPressed && <div><Quarterfinals /> </div>}
-                {this.formingTeams().map((i) => <div><div>{i.country}</div><div>{i.people}</div></div>)}
+                {this.shuffle(this.formingTeams()).map((i) => <div><div>{i.country}</div><div>{i.people}</div></div>)}
                 <button onClick={this.buttonClick.bind(this)}>
                     Draw
                 </button>

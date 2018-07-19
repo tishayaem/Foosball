@@ -13,12 +13,11 @@ export default class FormTeams extends React.Component {
 
 
     }
-
-    componentDidMount() {
-        // this.setState({
-        //     list: listOfTeams[0]
-        // })
-    }
+    shuffle = (xs)=> {
+        return xs.slice(0).sort(function () {
+            return 0.5 - Math.random();
+        });
+    };
 
     buttonClick = () => {
         this.setState({isPressed: true})
@@ -29,12 +28,12 @@ export default class FormTeams extends React.Component {
         return (
             <div>
                 {
-                    this.state.listOfTeams
+                    this.shuffle(this.state.listOfTeams)
                         .map(function (obj) {
                             return (
                                 <div className="CountryPeople">
                                     <div>{obj.country + "=>"}</div>
-                                    <div>{obj.people[0] + "and" + obj.people[1]}</div>
+                                    <div>{obj.people[0] + " and " + obj.people[1]}</div>
                                 </div>
                             )
                         })

@@ -1,6 +1,6 @@
 
 
-export const const listOfTeams = [
+export const listOfTeams = [
 
     {
         country: "England",
